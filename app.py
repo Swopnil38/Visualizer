@@ -13,12 +13,19 @@ with col1:
         'Which Channel Data you want to view?',
         ('Finance Factory','Agrifo','Generation of Nepal','Khulla Manch','The Doers','The Good Health','ViewFinders Production','Wedding Dreams'),['Agrifo'],key=count)
     count += 1
-
-with col3:
-    option2 = st.multiselect('Which Social Media Data You want to view?',['Youtube','Facebook','Instagram','Tiktok','Audio Sites','Overall'],key = "option2")
-with col5:
-    option3 = st.multiselect('Which Data You want to view?',['Age/Gender','Country Follower/viewer','Views/Follower/Plays','Apps'],key = "option3")
-
+    channeels = ['Finance Factory','The Doers','The Good Health']
+    for k in optioned:
+        if k in channeels:
+            with col3:
+                option2 = st.multiselect('Which Social Media Data You want to view?',['Youtube','Facebook','Instagram','Tiktok','Audio Sites','Overall'],key = "option2")
+            with col5:
+                option3 = st.multiselect('Which Data You want to view?',['Age/Gender','Country Follower/viewer','Views/Follower/Plays','Apps'],key = "option3")
+            break
+    else:
+        with col3:
+            option2 = st.multiselect('Which Social Media Data You want to view?',['Youtube'],key = "option2")
+        with col5:
+            option3 = st.multiselect('Which Data You want to view?',['Age/Gender','Country Follower/viewer','Views/Follower/Plays'],key = "option3")
 
     
 
