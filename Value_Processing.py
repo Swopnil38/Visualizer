@@ -170,139 +170,143 @@ def read_yt_csv_dately(name,yr,mo):
     
 def read_fb_insta(name):
 
-        
-    geolocator = Nominatim(user_agent='your unique UA')
-    def geolocate(country):
-        try:
-            # Geolocate the center of the country
-            loc = geolocator.geocode(country)
-            # And return latitude and longitude
-            return [loc.latitude, loc.longitude]
-        except GeocoderTimedOut:
-            # Return missing value
-            return geolocate(country)
-        except:
-            return 0,0
-    data = pd.ExcelFile('data/{}.xlsx'.format(name))
-    insta_age = pd.read_excel(data,'InstagramAge')
-    fb_age = pd.read_excel(data,'FacebookAge')
-    insta_Geography = pd.read_excel(data,'Instagram_Geography')
-    fb_Geography = pd.read_excel(data,'Facebook_Geography')
-    like_follow = pd.read_excel(data,'Fb_Insta')
-    ages_fb =  []
-    male_viewer_fb = []
-    female_viewer_fb = []
-    values = 0
-    valuess = 0
-    for i,j,k in zip(fb_age['ageGroup'],fb_age['Gender'],fb_age['viewerPercentage']):
-        if i[3:] not in ages_fb:
-            ages_fb.append(i[3:])
-        
-        if j == "male":
-            male_viewer_fb.append(k)
+    try:   
+        print("6")
+        geolocator = Nominatim(user_agent='your unique UA')
+        def geolocate(country):
+            try:
+                # Geolocate the center of the country
+                loc = geolocator.geocode(country)
+                # And return latitude and longitude
+                return [loc.latitude, loc.longitude]
+            except GeocoderTimedOut:
+                # Return missing value
+                return geolocate(country)
+            except:
+                return 0,0
+        data = pd.ExcelFile('data/{}.xlsx'.format(name))
+        insta_age = pd.read_excel(data,'InstagramAge')
+        fb_age = pd.read_excel(data,'FacebookAge')
+        insta_Geography = pd.read_excel(data,'Instagram_Geography')
+        fb_Geography = pd.read_excel(data,'Facebook_Geography')
+        like_follow = pd.read_excel(data,'Fb_Insta')
+        ages_fb =  []
+        male_viewer_fb = []
+        female_viewer_fb = []
+        values = 0
+        valuess = 0
+        for i,j,k in zip(fb_age['ageGroup'],fb_age['Gender'],fb_age['viewerPercentage']):
+            if i[3:] not in ages_fb:
+                ages_fb.append(i[3:])
             
-        if j == "female":
-            female_viewer_fb.append(k)
-        
-
-
-    ages_insta =  []
-    male_viewer_insta = []
-    female_viewer_insta = []
-    values = 0
-    valuess = 0
-    for i,j,k in zip(insta_age['ageGroup'],insta_age['Gender'],insta_age['viewerPercentage']):
-        if i[3:] not in ages_insta:
-            ages_insta.append(i[3:])
-        
-        if j == "male":
-            male_viewer_insta.append(k)
+            if j == "male":
+                male_viewer_fb.append(k)
+                
+            if j == "female":
+                female_viewer_fb.append(k)
             
-        if j == "female":
-            female_viewer_insta.append(k)
-    
-    country_name = []
-    country_viewer_per = []    
-    country_lat = []
-    country_lon = []
-
-    for i in insta_Geography['Country']:
-        countrys_lat,countrys_long = geolocate(i)
-        country_lat.append(countrys_lat)
-        country_lon.append(countrys_long)
-        country_name.append(i)
-    insta_Geography['Latitude'] = country_lat
-    insta_Geography['Longitude'] = country_lon
-        
-    print(insta_Geography)
-    total_views = 0
-    for i in insta_Geography['Value']:
-        total_views = total_views + i
-    for i in insta_Geography['Value']:
-        viewer_per = (i/total_views)*100
-        country_viewer_per.append(viewer_per)
-        
-        
-    country_name_fb = []
-    country_viewer_per_fb = []    
-    country_lat_fb = []
-    country_lon_fb = []
-
-    for i in fb_Geography['Country']:
-        countrys_lat,countrys_long = geolocate(i)
-        country_lat_fb.append(countrys_lat)
-        country_lon_fb.append(countrys_long)
-        country_name_fb.append(i)
-    fb_Geography['Latitude'] = country_lat_fb
-    fb_Geography['Longitude'] = country_lon_fb
-        
-    total_views = 0
-    for i in fb_Geography['Value']:
-        total_views = total_views + i
-    for i in fb_Geography['Value']:
-        viewer_per = (i/total_views)*100
-        country_viewer_per_fb.append(viewer_per)   
-        
-    like_follow['year'] = pd.DatetimeIndex(like_follow['Date']).year
-    like_follow['month'] = pd.DatetimeIndex(like_follow['Date']).month
-    like_follow['date'] = pd.to_datetime(like_follow['Date'])
-    
-    year_month_fb_insta = []
-    like_fb = []
-    follower_insta = []
-
-        
-    years = [2019,2020,2021,2022]
-    months = [1,2,3,4,5,6,7,8,9,10,11,12]
-    for i in years:
-        current_year = []
-        current_year.append(i)
-        year_df = like_follow[like_follow['year'].isin(current_year)]
 
 
-        
-        for j in months:
-            monthss = str(i)+'/'+str(j)
-            viewed = 0
-            avg_durationed = 0
-            month = []
-            month.append(j)
-            month_df = year_df[year_df['month'].isin(month)]
+        ages_insta =  []
+        male_viewer_insta = []
+        female_viewer_insta = []
+        values = 0
+        valuess = 0
+        for i,j,k in zip(insta_age['ageGroup'],insta_age['Gender'],insta_age['viewerPercentage']):
+            if i[3:] not in ages_insta:
+                ages_insta.append(i[3:])
             
-            for k in month_df['Like']:
-                viewed = viewed + k
-            month_days = 0
-            for l in month_df['Follower']:
-                avg_durationed = avg_durationed + l
+            if j == "male":
+                male_viewer_insta.append(k)
+                
+            if j == "female":
+                female_viewer_insta.append(k)
+        
+        country_name_fb_insta = []
+        country_viewer_per_insta = []    
+        country_lat = []
+        country_lon = []
 
-            like_fb.append(viewed)
-            follower_insta.append(avg_durationed)
-            year_month_fb_insta.append(monthss)
- 
+        for i in insta_Geography['Country']:
+            countrys_lat,countrys_long = geolocate(i)
+            country_lat.append(countrys_lat)
+            country_lon.append(countrys_long)
+            country_name_fb_insta.append(i)
+        insta_Geography['Latitude'] = country_lat
+        insta_Geography['Longitude'] = country_lon
+            
+        print(insta_Geography)
+        total_views = 0
+        for i in insta_Geography['Value']:
+            total_views = total_views + i
+        for i in insta_Geography['Value']:
+            viewer_per = (i/total_views)*100
+            country_viewer_per_insta.append(viewer_per)
+            
+            
+        country_name_fb = []
+        country_viewer_per_fb = []    
+        country_lat_fb = []
+        country_lon_fb = []
+
+        for i in fb_Geography['Country']:
+            countrys_lat,countrys_long = geolocate(i)
+            country_lat_fb.append(countrys_lat)
+            country_lon_fb.append(countrys_long)
+            country_name_fb.append(i)
+        fb_Geography['Latitude'] = country_lat_fb
+        fb_Geography['Longitude'] = country_lon_fb
+            
+        total_views = 0
+        for i in fb_Geography['Value']:
+            total_views = total_views + i
+        for i in fb_Geography['Value']:
+            viewer_per = (i/total_views)*100
+            country_viewer_per_fb.append(viewer_per)   
+            
+        like_follow['year'] = pd.DatetimeIndex(like_follow['Date']).year
+        like_follow['month'] = pd.DatetimeIndex(like_follow['Date']).month
+        like_follow['date'] = pd.to_datetime(like_follow['Date'])
+        
+        year_month_fb_insta = []
+        like_fb = []
+        follower_insta = []
+
+            
+        years = [2019,2020,2021,2022]
+        months = [1,2,3,4,5,6,7,8,9,10,11,12]
+        for i in years:
+            current_year = []
+            current_year.append(i)
+            year_df = like_follow[like_follow['year'].isin(current_year)]
+
+
+            
+            for j in months:
+                monthss = str(i)+'/'+str(j)
+                viewed = 0
+                avg_durationed = 0
+                month = []
+                month.append(j)
+                month_df = year_df[year_df['month'].isin(month)]
+                
+                for k in month_df['Like']:
+                    viewed = viewed + k
+                month_days = 0
+                for l in month_df['Follower']:
+                    avg_durationed = avg_durationed + l
+
+                like_fb.append(viewed)
+                follower_insta.append(avg_durationed)
+                year_month_fb_insta.append(monthss)
+    
+        
+        print("5")
+        return ages_fb,male_viewer_fb,female_viewer_fb,ages_insta,male_viewer_insta,female_viewer_insta,country_name_fb_insta,country_viewer_per_insta,country_lat,country_lon,country_name_fb,country_viewer_per_fb,country_lat_fb,country_lon_fb,year_month_fb_insta,like_fb,follower_insta
+    except Exception as e:
+        print(e)
     
     
-    return ages_fb,male_viewer_fb,female_viewer_fb,ages_insta,male_viewer_insta,female_viewer_insta,country_name,country_viewer_per,country_lat,country_lon,country_name_fb,country_viewer_per_fb,country_lat_fb,country_lon_fb,year_month_fb_insta,like_fb,follower_insta
-
 def tiktok_data(name):
     geolocator = Nominatim(user_agent='your unique UA')
     def geolocate(country):
@@ -346,9 +350,9 @@ def tiktok_data(name):
     tiktok_Geography['Longitude'] = country_lon_fb
         
     total_views = 0
-    for i in tiktok_Geography['Value']:
+    for i in tiktok_Geography['View']:
         total_views = total_views + i
-    for i in tiktok_Geography['Value']:
+    for i in tiktok_Geography['View']:
         viewer_per = (i/total_views)*100
         tik_geo_value.append(viewer_per)   
 
@@ -364,7 +368,7 @@ def tiktok_data(name):
     tiktok_follower['date'] = pd.to_datetime(tiktok_follower['Date'])
 
         
-    years = [2019,2020,2021,2022]
+    years = [2022]
     months = [1,2,3,4,5,6,7,8,9,10,11,12]
     for i in years:
         current_year = []
@@ -391,3 +395,142 @@ def tiktok_data(name):
             
     return tik_age,tik_age_label,tik_geo_label,tik_geo_value,follower_tiktok,year_month_tiktok,country_lat_fb,country_lon_fb
  
+def read_audio_files(name):
+    
+    geolocator = Nominatim(user_agent='your unique UA')
+    def geolocate(country):
+        try:
+            # Geolocate the center of the country
+            loc = geolocator.geocode(country)
+            # And return latitude and longitude
+            return [loc.latitude, loc.longitude]
+        except GeocoderTimedOut:
+            # Return missing value
+            return geolocate(country)
+        except:
+            return 0,0
+    
+    data = pd.ExcelFile('data/{}.xlsx'.format(name))
+    audio_plays = pd.read_excel(data,'Audio')
+    audio_playedfrom = pd.read_excel(data,'Audio_play')
+    audio_geo = pd.read_excel(data,'Audio_Geography')
+    plays_date = []
+    plays_time = []
+    for i in audio_plays['Time']:
+        plays_date.append(i)
+    for i in audio_plays['Plays']:
+        plays_time.append(i)
+        
+    apps = []
+    percent_apps = []
+    for i in audio_playedfrom['App']:
+        apps.append(i)
+    for i in audio_playedfrom['Percent of Plays']:
+        percent_apps.append(i)
+    
+    country = []
+    percent_country = []
+
+    for i in audio_geo['Percent of Plays']:
+        percent_country.append(i)
+    
+    country_lat_audio = []
+    country_lon_audio = []
+
+    for i in audio_geo['Geo']:
+        countrys_lat,countrys_long = geolocate(i)
+        country_lat_audio.append(countrys_lat)
+        country_lon_audio.append(countrys_long)
+        country.append(i)
+    audio_geo['Latitude'] = country_lat_audio
+    audio_geo['Longitude'] = country_lon_audio
+        
+    return plays_date,plays_time,apps,percent_apps,country,country_lat_audio,country_lon_audio,percent_country
+    
+     
+ 
+def read_overall_particular(name):
+    data = pd.ExcelFile('data/{}.xlsx'.format(name))
+    GenderAge = pd.read_excel(data,'GenderWiseAge')
+    Geography = pd.read_excel(data,'Geography')
+    insta_age = pd.read_excel(data,'InstagramAge')
+    fb_age = pd.read_excel(data,'FacebookAge')
+    insta_Geography = pd.read_excel(data,'Instagram_Geography')
+    fb_Geography = pd.read_excel(data,'Facebook_Geography')
+    tiktok_Geography = pd.read_excel(data,'Tiktok_Geography')
+    ages =  ['13-17','18-24','25-34','35-44','45-54','55+']
+    male_viewer_yt = []
+    female_viewer_yt = []
+    values = 0
+    valuess = 0
+    for i,j,k in zip(GenderAge['ageGroup'],GenderAge['Gender'],GenderAge['viewerPercentage']):
+        
+        if j == "male":
+            print(i[3:])
+            if (i[3:] in ages) or i =="age55-64" or i == "age65-":
+                if i == "age55-64" or i == "age65-" :
+                    values = values + k
+                else:
+                    male_viewer_yt.append(k)
+            else:
+                print("Entered Thricess")
+                male_viewer_yt.append(0)
+                
+        if j == "female":
+            print(i[3:])
+            if (i[3:] in ages) or i =="age55-64" or i == "age65-":
+                if i == "age55-64" or i == "age65-" :
+                    valuess = valuess + k
+                else:
+                    female_viewer_yt.append(k)
+            else:
+                female_viewer_yt.append(0)
+
+        
+    male_viewer_yt.append(values)
+    female_viewer_yt.append(valuess)
+    
+    male_viewer_fb =[]
+    female_viewer_fb = []
+    male_viewer_insta = []
+    female_viewer_insta = []
+    
+    for i,j,k,l,m,n in zip(fb_age['ageGroup'],fb_age['Gender'],fb_age['viewerPercentage'],insta_age['ageGroup'],insta_age['Gender'],insta_age['viewerPercentage']):
+        
+        if j == "male":
+            print (i[3:])
+            if i[3:] in ages:
+                male_viewer_fb.append(k)
+            else:
+                male_viewer_fb.append(0)
+        if j == "female":
+            if i[3:] in ages:
+                female_viewer_fb.append(k)
+            else:
+                female_viewer_fb.append(0)
+        
+        if m == "male":
+            if l[3:] in ages:
+                male_viewer_insta.append(n)
+                print(n)
+            else:
+                male_viewer_insta.append(0)
+        if m == "female":
+            if l[3:] in ages:
+                female_viewer_insta.append(n)
+            else:
+                female_viewer_insta.append(0)
+        
+    male_viewer_average = []
+    female_viewer_average = []
+    print(male_viewer_yt)
+    print(male_viewer_fb)
+    print(male_viewer_insta)
+    for i,j,k,l,m,n in zip(male_viewer_yt,female_viewer_yt,male_viewer_fb,female_viewer_fb,male_viewer_insta,female_viewer_insta):
+        avg = (i+k+m)/3
+        male_viewer_average.append(avg)
+        avg_f = (j+l+n)/3
+        female_viewer_average.append(avg_f)
+        
+
+    return ages,male_viewer_average,female_viewer_average

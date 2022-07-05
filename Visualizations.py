@@ -45,15 +45,15 @@ def horizontal_bar(Labels,value_male,value_female,channel_name):
         
 
     
-    fig, ax = plt.subplots(figsize=(12,6))
+    fig, ax = plt.subplots(figsize=(8,6))
     length_male = len(Labels)
     colors_male = get_cmap(length_male)
     heights = 0.4
     x = np.arange(len(Labels))
     widths = 0.4
     
-    horizontal_female = ax.barh(x+widths,value_female,widths,zorder = 0.8)
-    horizontal_male = ax.barh(x,value_male,widths,zorder = 0.8)
+    horizontal_female = ax.barh(x+widths,value_female,widths,zorder = 0.8,color = 'fuchsia')
+    horizontal_male = ax.barh(x,value_male,widths,zorder = 0.8,color='slategray')
     
     y_bar_female = [rectangle.get_y()+0.8 for rectangle in horizontal_female]
     y_bar_male = [rectangle.get_y()+0.8 for rectangle in horizontal_male]
@@ -72,12 +72,17 @@ def horizontal_bar(Labels,value_male,value_female,channel_name):
     return fig
  
 def pie(labels,value,channel_name):
-    fig, ax = plt.subplots()
+    
+    fig, ax = plt.subplots(figsize = (5,5))
     image_name = f'static/images/{channel_name}_Geography.png'
-    explode = [0,0,0,1]
-    plt.pie(value, labels=labels,autopct='%1.1f%%', shadow=True, startangle=150) 
-    plt.axis('auto')
-    plt.savefig(image_name, dpi=100)
+    plt.pie(value, labels=labels,autopct='%1.1f%%', shadow=True, startangle=90,pctdistance=0.85) 
+    #draw circle
+    centre_circle = plt.Circle((0,0),0.70,fc='white')
+    fig2 = plt.gcf()
+    fig2.gca().add_artist(centre_circle)
+    plt.axis('equal')
+    plt.tight_layout()
+    plt.savefig(image_name, dpi=50)
 
     return fig
     
