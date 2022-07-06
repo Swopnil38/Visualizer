@@ -290,10 +290,10 @@ def read_fb_insta(name):
                 month.append(j)
                 month_df = year_df[year_df['month'].isin(month)]
                 
-                for k in month_df['Like']:
+                for k in month_df['Likes']:
                     viewed = viewed + k
                 month_days = 0
-                for l in month_df['Follower']:
+                for l in month_df['Followers']:
                     avg_durationed = avg_durationed + l
 
                 like_fb.append(viewed)
