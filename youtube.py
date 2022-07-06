@@ -120,6 +120,7 @@ def read_fb_insta_values(optionss):
 def Fb_age_gender():
     try:
         st.markdown("<h1 style='text-align: center;'>Age Gender Chart of Facebook</h1><br><br>", unsafe_allow_html=True)
+        print(ages_fb,male_viewer_fb,female_viewer_fb,option)
         figure = horizontal_bar(ages_fb,male_viewer_fb,female_viewer_fb,option)
         st.pyplot(figure)
     except:
@@ -127,6 +128,7 @@ def Fb_age_gender():
 def Insta_age_gender():
     
     st.markdown("<h1 style='text-align: center;'>Age Gender Chart of Instagram</h1><br><br>", unsafe_allow_html=True)
+    (ages_insta,male_viewer_insta,female_viewer_insta,option)
     figure = horizontal_bar(ages_insta,male_viewer_insta,female_viewer_insta,option)
     st.pyplot(figure)
 
