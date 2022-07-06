@@ -125,12 +125,11 @@ def Fb_age_gender():
     except:
         st.write("Error while Retreiving Gender Age Data of Facebook")
 def Insta_age_gender():
-    try:
-        st.markdown("<h1 style='text-align: center;'>Age Gender Chart of Instagram</h1><br><br>", unsafe_allow_html=True)
-        figure = horizontal_bar(ages_insta,male_viewer_insta,female_viewer_insta,option)
-        st.pyplot(figure)
-    except:
-        st.write("Error while Retreiving Age Gender Data of Instagram")
+    
+    st.markdown("<h1 style='text-align: center;'>Age Gender Chart of Instagram</h1><br><br>", unsafe_allow_html=True)
+    figure = horizontal_bar(ages_insta,male_viewer_insta,female_viewer_insta,option)
+    st.pyplot(figure)
+
 def Insta_country():
     try:
         st.markdown("<h1 style='text-align: center;'>Country wise Follower of Instagram</h1><br><br>", unsafe_allow_html=True)
