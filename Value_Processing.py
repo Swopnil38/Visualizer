@@ -334,7 +334,7 @@ def tiktok_data(name):
     
     for i in tiktok_age['Gender']:
         tik_age_label.append(i)
-    for i in tiktok_age['Views']:
+    for i in tiktok_age['Distribution']:
         tik_age.append(i)
     
     
