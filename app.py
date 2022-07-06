@@ -40,12 +40,19 @@ if submitted or st.session_state.submit_state:
                 ('Finance Factory','Agrifo','Generation of Nepal','Khulla Manch','The Doers','The Good Health','ViewFinders Production','Wedding Dreams'),['Agrifo'],key=count)
             count += 1
             channeels = ['Finance Factory','The Doers','The Good Health']
+            
             for k in optioned:
                 if k in channeels:
                     with col3:
                         option2 = st.multiselect('Which Social Media Data You want to view?',['Youtube','Facebook','Instagram','Tiktok','Audio Sites','Overall'],key = "option2")
-                    with col5:
-                        option3 = st.multiselect('Which Data You want to view?',['Age/Gender','Country Follower/viewer','Views/Follower/Plays','Apps'],key = "option3")
+                    for k in option2:
+                        if k == "Audio Sites":
+                            with col5:
+                                option3 = st.multiselect('Which Data You want to view?',['Country Follower/viewer','Views/Follower/Plays','Apps'],key = "option3")
+                        else:
+                            with col5:
+                                option3 = st.multiselect('Which Data You want to view?',['Age/Gender','Country Follower/viewer','Views/Follower/Plays'],key = "option3")
+                   
                     break
             else:
                 with col3:
@@ -81,15 +88,27 @@ if submitted or st.session_state.submit_state:
                         if j == "Views/Follower/Plays":
                             YT_overall_view()
                             col1,col2,col3,col4,col5 = st.columns([4,1,2,1,4])
+                            
                             with col2:
-                                month_select = st.selectbox(
-                                'Select Month',
-                                ('1', '2', '3','4','5','6','7','8','9','10','11','12'),key = "month_select")
-                            with col4:
                                 year_select   = st.selectbox(
                                     'Select Year',
-                                    ('2019','2020','2021','2022'),key = "year_select"
-                                )  
+                                    ('2020','2021','2022'),key = "year_select"
+                                )
+                            if year_select == "2020":   
+                                with col4:
+                                    month_select = st.selectbox(
+                                    'Select Month',
+                                    ('7','8','9','10','11','12'),key = "month_select")
+                            elif year_select == "2021":
+                                with col4:
+                                    month_select = st.selectbox(
+                                    'Select Month',
+                                    ('1', '2', '3','4','5','6','7','8','9','10','11','12'),key = "month_select")
+                            else:
+                                with col4:
+                                    month_select = st.selectbox(
+                                    'Select Month',
+                                    ('1', '2', '3','4','5','6'),key = "month_select")
                             YT_particular_view(year_select,month_select)
                 try:
                     if i == "Facebook":

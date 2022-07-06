@@ -108,7 +108,9 @@ ages_fb=male_viewer_fb=female_viewer_fb=ages_insta=male_viewer_insta=female_view
 def read_fb_insta_values(optionss):
     try:
         global ages_fb,male_viewer_fb,female_viewer_fb,ages_insta,male_viewer_insta,female_viewer_insta,country_name_fb_insta,country_viewer_per_insta,country_lat_insta,country_lon_insta,country_name_fb,country_viewer_per_fb,country_lat_fb,country_lon_fb,year_month_fb_insta,like_fb,follower_insta,option
-        ages_fb,male_viewer_fb,female_viewer_fb,ages_insta,male_viewer_insta,female_viewer_insta,country_name_fb_insta,country_viewer_per_insta,country_lat_insta,country_lon_insta,country_name_fb,country_viewer_per_fb,country_lat_fb,country_lon_fb,year_month_fb_insta,like_fb,follower_insta = read_fb_insta(optionss)  
+        ages_fb,male_viewer_fb,female_viewer_fb,ages_insta,male_viewer_insta,female_viewer_insta,country_name_fb_insta,country_viewer_per_insta,country_lat_insta,country_lon_insta,country_name_fb,country_viewer_per_fb,country_lat_fb,country_lon_fb,year_month_fb_insta,like_fb,follower_insta = read_fb_insta(optionss) 
+        print(country_name_fb_insta)
+        print(country_viewer_per_insta) 
         option = optionss
         print("2")
     except Exception as e:
@@ -116,23 +118,19 @@ def read_fb_insta_values(optionss):
     print("3")
         
 def Fb_age_gender():
-    col1,col2,col3 = st.columns([1,2,1])
-    with col2:
-        try:
-            st.markdown("<h1 style='text-align: center;'>Age Gender Chart of Facebook</h1><br><br>", unsafe_allow_html=True)
-            figure = horizontal_bar(ages_fb,male_viewer_fb,female_viewer_fb,option)
-            st.pyplot(figure)
-        except:
-            st.write("Error while Retreiving Gender Age Data of Facebook")
+    try:
+        st.markdown("<h1 style='text-align: center;'>Age Gender Chart of Facebook</h1><br><br>", unsafe_allow_html=True)
+        figure = horizontal_bar(ages_fb,male_viewer_fb,female_viewer_fb,option)
+        st.pyplot(figure)
+    except:
+        st.write("Error while Retreiving Gender Age Data of Facebook")
 def Insta_age_gender():
-    col1,col2,col3 = st.columns([1,2,1])
-    with col2:
-        try:
-            st.markdown("<h1 style='text-align: center;'>Age Gender Chart of Instagram</h1><br><br>", unsafe_allow_html=True)
-            figure = horizontal_bar(ages_insta,male_viewer_insta,female_viewer_insta,option)
-            st.pyplot(figure)
-        except:
-            st.write("Error while Retreiving Age Gender Data of Instagram")
+    try:
+        st.markdown("<h1 style='text-align: center;'>Age Gender Chart of Instagram</h1><br><br>", unsafe_allow_html=True)
+        figure = horizontal_bar(ages_insta,male_viewer_insta,female_viewer_insta,option)
+        st.pyplot(figure)
+    except:
+        st.write("Error while Retreiving Age Gender Data of Instagram")
 def Insta_country():
     try:
         st.markdown("<h1 style='text-align: center;'>Country wise Follower of Instagram</h1><br><br>", unsafe_allow_html=True)
@@ -288,7 +286,7 @@ def tiktok_country():
             
             st.pydeck_chart(r)
         with col2:
-            df = pd.DataFrame(list(zip(country_name_fb,country_viewer_per_fb)),columns = ['Country Name','Country Viewer Percentage'])
+            df = pd.DataFrame(list(zip(tik_geo_label,tik_geo_value)),columns = ['Country Name','Country Viewer Percentage'])
             df.sort_values(by='Country Viewer Percentage')
             st.dataframe(df)
     except:
