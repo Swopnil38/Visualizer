@@ -207,7 +207,7 @@ def Insta_country():
             
             st.pydeck_chart(r)
         with col2:
-            df = pd.DataFrame(list(zip(country_name,country_viewer_per)),columns = ['Country Name','Country Viewer Percentage'])
+            df = pd.DataFrame(list(zip(country_name_fb_insta,country_viewer_per_insta)),columns = ['Country Name','Country Viewer Percentage'])
             df.sort_values(by='Country Viewer Percentage')
             st.dataframe(df)
     except:
