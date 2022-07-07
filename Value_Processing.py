@@ -416,9 +416,9 @@ def read_audio_files(name):
     audio_geo = pd.read_excel(data,'Audio_Geography')
     plays_date = []
     plays_time = []
-    for i in audio_plays['Time']:
+    for i in audio_plays['Date']:
         plays_date.append(i)
-    for i in audio_plays['Plays']:
+    for i in audio_plays['allEpisodes']:
         plays_time.append(i)
         
     apps = []
