@@ -15,6 +15,20 @@ import moviepy.editor as mp
 
 ages_yt=male_viewer_yt=female_viewer_yt=country_name=country_viewer_per=country_lat=country_lon=viewes=avg_duration=year_month=option = None
 
+def Finance_YT():
+    global ages_yt,male_viewer_yt,female_viewer_yt,country_name,country_viewer_per,country_lat,country_lon,viewes,avg_duration,year_month,option
+    ages_yt = ['18-24', '25-34', '35-44', '45-54', '55+']
+    male_viewer_yt = [41.0, 45.4, 4.9, 0.1, 0]
+    female_viewer_yt = [3.6, 4.9, 0.0, 0.1, 0]
+    country_name = ['United Arab Emirates', 'Australia', 'Germany', 'United Kingdom', 'India', 'Japan', 'Korea, Republic of', 'Nepal', 'Singapore', 'United States']
+    country_viewer_per = [0.06142425866147392, 0.4090594247030072, 0.12023471908203405, 0.043127670975077435, 0.04574146921599122, 0.060117359541017025, 0.17251068390030974, 98.77151482677053, 0.013068991204568918, 0.3032005959459989]
+    country_lat = [24.0002488, -24.7761086, 51.0834196, 54.7023545, 22.3511148, 36.5748441, 36.638392, 28.1083929, 1.357107, 39.7837304]
+    country_lon = [53.9994829, 134.755, 10.4234469, -3.2765753, 78.6677428, 139.2394179, 127.6961188, 84.0917139, 103.8194992, -100.445882]
+    viewes = [9898, 8720, 6107, 5905, 5814, 3904, 3326, 3754, 2186, 1909, 2425, 2605, 2444, 2293, 4854, 2454, 1650, 1501, 1738, 1637, 1643, 1689, 6589, 8233]
+    avg_duration = [8.452666666666667, 8.53225806451613, 8.982222222222221, 8.25, 9.948333333333332, 10.433870967741935, 9.741397849462366, 10.030357142857143, 9.118279569892474, 9.431666666666667, 9.812903225806451, 8.37888888888889, 8.823655913978493, 8.34731182795699, 6.330555555555555, 6.902688172043011, 5.308333333333334, 7.782258064516129, 7.004301075268817, 7.354166666666667, 7.663978494623655, 7.415555555555556, 6.4, 7.148717948717948]
+    year_month = ['2020/7', '2020/8', '2020/9', '2020/10', '2020/11', '2020/12', '2021/1', '2021/2', '2021/3', '2021/4', '2021/5', '2021/6', '2021/7', '2021/8', '2021/9', '2021/10', '2021/11', '2021/12', '2022/1', '2022/2', '2022/3', '2022/4', '2022/5', '2022/6']
+    option = "Finance Factory"
+
 def read_yt(options):
     global ages_yt,male_viewer_yt,female_viewer_yt,country_name,country_viewer_per,country_lat,country_lon,viewes,avg_duration,year_month,option
     ages_yt,male_viewer_yt,female_viewer_yt,country_name,country_viewer_per,country_lat,country_lon,viewes,avg_duration,year_month = read_yt_csv(options)
@@ -104,7 +118,31 @@ def YT_particular_view(year_select,month_select):
         st.markdown("<h1 style='text-align: center;'>{}/{} Viewer Chart of Youtube</h1><br><br>".format(year_select,month_select), unsafe_allow_html=True)
         st.area_chart(month_data)
     
-ages_fb=male_viewer_fb=female_viewer_fb=ages_insta=male_viewer_insta=female_viewer_insta=country_name_fb_insta=country_viewer_per_insta=country_lat_insta=country_lon_insta=country_name_fb=country_viewer_per_fb=country_lat_fb=country_lon_fb=year_month_fb_insta=like_fb=follower_insta=option = None    
+ages_fb=male_viewer_fb=female_viewer_fb=ages_insta=male_viewer_insta=female_viewer_insta=country_name_fb_insta=country_viewer_per_insta=country_lat_insta=country_lon_insta=country_name_fb=country_viewer_per_fb=country_lat_fb=country_lon_fb=year_month_fb_insta=like_fb=follower_insta=option=facebook_reach=insta_reach = None    
+
+def Finance_Fb_Insta():
+    global ages_fb,male_viewer_fb,female_viewer_fb,ages_insta,male_viewer_insta,female_viewer_insta,country_name_fb_insta,country_viewer_per_insta,country_lat_insta,country_lon_insta,country_name_fb,country_viewer_per_fb,country_lat_fb,country_lon_fb,year_month_fb_insta,like_fb,follower_insta,option,facebook_reach,insta_reach  
+    ages_fb = ['18-24', '25-34', '35-44', '45-54', '55+']
+    male_viewer_fb = [22.9, 40.7, 13.5, 1.5, 0.5]
+    female_viewer_fb = [7.9, 11.3, 1.5, 0.0, 0.2]
+    ages_insta = ['18-24', '25-34', '35-44', '45-54', '55+']
+    male_viewer_insta = [332.0, 40.2, 6.8, 0.8, 0.6]
+    female_viewer_insta = [7.6, 9.7, 0.8, 0.2, 0.1]
+    country_name_fb_insta = ['Kathmandu, Nepal', 'Pokhara, Nepal', 'Butwal, Nepal', 'Sydney, NSW, Australia', 'Jhapa District, Nepal']
+    country_viewer_per_insta = [88.02153432032303, 4.441453566621804, 3.095558546433378, 2.4226110363391657, 2.018842530282638]
+    country_lat_insta=[27.708317, 28.209538, 27.6827731, -33.8698439, 26.583735400000002]
+    country_lon_insta=[85.3205817, 83.991402, 83.44386204928969, 151.2082848, 87.88570103314731]
+    country_name_fb=['Kathmandu, Nepal', 'Pokhara, Nepal', 'Lalitpur, Nepal', 'Butwal, Nepal', 'Bhaktapur, Nepal', 'Bharatpur, Nepal', 'Jhapa District, Nepal', 'Biratnagar, Nepal', 'Itahari, Nepal', 'Hetauda, Nepal']
+    country_viewer_per_fb = [82.98122065727698, 3.4037558685446, 3.0516431924882625, 2.8169014084507036, 2.4647887323943656, 1.1737089201877933, 1.1737089201877933, 1.0563380281690138, 1.0563380281690138, 0.8215962441314552]
+    country_lat_fb = [27.708317, 28.209538, 27.6676649, 27.6827731, 27.6718111, 27.6879274, 26.583735400000002, 26.4623007, 26.673931449999998, 27.4187156]
+    country_lon_fb=[85.3205817, 83.991402, 85.3183888179628, 83.44386204928969, 85.4264284, 84.4360695372875, 87.88570103314731, 87.281617, 87.25838795294675, 85.01009335459317]
+    year_month_fb_insta = ['2019/1', '2019/2', '2019/3', '2019/4', '2019/5', '2019/6', '2019/7', '2019/8', '2019/9', '2019/10', '2019/11', '2019/12', '2020/1', '2020/2', '2020/3', '2020/4', '2020/5', '2020/6', '2020/7', '2020/8', '2020/9', '2020/10', '2020/11', '2020/12', '2021/1', '2021/2', '2021/3', '2021/4', '2021/5', '2021/6', '2021/7', '2021/8', '2021/9', '2021/10', '2021/11', '2021/12', '2022/1', '2022/2', '2022/3', '2022/4', '2022/5', '2022/6', '2022/7', '2022/8', '2022/9', '2022/10', '2022/11', '2022/12']
+    like_fb = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 147, 16, 6, 8, 5, 7, 5, 6, 13, 13, 14, 10, 172, 67, 24, 6, 10, 15, 4, 2, 6, 7, 15, 1, 0, 0, 0, 0, 0]
+    follower_insta = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 43.0, 48.0, 70.0, 87.0, 64.0, 86.0, 132.0, 0, 0, 0, 0, 0, 0, 0, 0]
+    facebook_reach = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 339, 5207, 596, 1288, 103, 62, 53, 42, 37, 31, 39, 544, 564, 7110, 4867, 1017, 1020, 283, 335, 188, 158, 121, 109, 141, 0, 0, 0, 0, 0, 0]
+    insta_reach = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3581, 6351, 3133, 4903, 918, 153, 3799, 7360, 5589, 2176, 362, 7854, 4573, 4301, 3486, 1505, 1902, 617, 214, 38, 633, 339, 288, 57, 0, 0, 0, 0, 0, 0]
+    option = "Finance Factory"
+
 def read_fb_insta_values(optionss):
     try:
         global ages_fb,male_viewer_fb,female_viewer_fb,ages_insta,male_viewer_insta,female_viewer_insta,country_name_fb_insta,country_viewer_per_insta,country_lat_insta,country_lon_insta,country_name_fb,country_viewer_per_fb,country_lat_fb,country_lon_fb,year_month_fb_insta,like_fb,follower_insta,option
@@ -237,6 +275,20 @@ def insta_like():
 
     
 tik_age=tik_age_label=tik_geo_label=tik_geo_value=follower_tiktok=year_month_tiktok=country_lat_fb=country_lon_fb=option = None
+
+def Finance_Tiktok():
+    global tik_age,tik_age_label,tik_geo_label,tik_geo_value,follower_tiktok,year_month_tiktok,country_lat_fb,country_lon_fb,option
+    tik_age = [83, 17]
+    tik_age_label = ['Male', 'Female']
+    tik_geo_label = ['United Arab Emirates', 'Australia', 'South Korea', 'Japan', 'Nepal']
+    tik_geo_value = [1.5, 0.5, 0.25, 0.75, 97.0]
+    
+    follower_tiktok = [0, 0, 0, 0, 158832, 463170, 15177, 0, 0, 0, 0, 0]
+    year_month_tiktok = ['2022/1', '2022/2', '2022/3', '2022/4', '2022/5', '2022/6']
+    country_lat_fb = [24.0002488, -24.7761086, 36.638392, 36.5748441, 28.1083929]
+    country_lon_fb = [53.9994829, 134.755, 127.6961188, 139.2394179, 84.0917139]
+    option = "Finance Factory"
+
 def read_tiktok_data(optionsss):
     global tik_age,tik_age_label,tik_geo_label,tik_geo_value,follower_tiktok,year_month_tiktok,country_lat_fb,country_lon_fb,option
     tik_age,tik_age_label,tik_geo_label,tik_geo_value,follower_tiktok,year_month_tiktok,country_lat_fb,country_lon_fb = tiktok_data(optionsss)
@@ -303,6 +355,19 @@ def tiktok_follower():
         st.write("Error while Retreving Data of Follower from Tiktok")
  
 plays_date=plays_time=apps=percent_apps=country=country_lat_audio=country_lon_audio=percent_country=option=None
+
+def read_audio():
+    global plays_date,plays_time,apps,percent_apps,country,country_lat_audio,country_lon_audio,percent_country,option
+    plays_date = ['6/19/2020, 12:00:00', '7/19/2020, 22:00:00', '8/19/2020, 08:00:00', '9/18/2020, 18:00:00', '10/19/2020, 04:00:00', '11/18/2020, 14:00:00', '12/19/2020, 24:00:00', '1/18/2021, 10:00:00', '2/17/2021, 20:00:00', '3/20/2021, 06:00:00', '4/19/2021, 16:00:00', '5/20/2021, 02:00:00', '6/19/2021, 12:00:00', '7/19/2021, 22:00:00', '8/19/2021, 08:00:00', '9/18/2021, 18:00:00', '10/19/2021, 04:00:00', '11/18/2021, 14:00:00', '12/19/2021, 24:00:00', '1/18/2022, 10:00:00', '2/17/2022, 20:00:00', '3/20/2022, 06:00:00', '4/19/2022, 16:00:00', '5/20/2022, 02:00:00', '6/19/2022, 12:00:00', '6/19/2020, 12:00:00', '7/19/2020, 22:00:00', '8/19/2020, 08:00:00', '9/18/2020, 18:00:00', '10/19/2020, 04:00:00', '11/18/2020, 14:00:00', '12/19/2020, 24:00:00', '1/18/2021, 10:00:00', '2/17/2021, 20:00:00', '3/20/2021, 06:00:00', '4/19/2021, 16:00:00', '5/20/2021, 02:00:00', '6/19/2021, 12:00:00', '7/19/2021, 22:00:00', '8/19/2021, 08:00:00', '9/18/2021, 18:00:00', '10/19/2021, 04:00:00', '11/18/2021, 14:00:00', '12/19/2021, 24:00:00', '1/18/2022, 10:00:00', '2/17/2022, 20:00:00', '3/20/2022, 06:00:00', '4/19/2022, 16:00:00', '5/20/2022, 02:00:00', '6/19/2022, 12:00:00']
+    plays_time = [10, 147, 180, 150, 61, 272, 201, 102, 164, 107, 144, 48, 34, 88, 90, 47, 135, 186, 113, 114, 93, 104, 37, 83, 44, 10, 147, 180, 150, 61, 272, 201, 102, 164, 107, 144, 48, 34, 88, 90, 47, 135, 186, 113, 114, 93, 104, 37, 83, 44]
+    apps = ['Apple Podcasts', 'Google Podcasts', 'Spotify', 'CastBox', 'Web Browser', 'Other']
+    percent_apps = [0.286855482933914, 0.265432098765432, 0.225853304284676, 0.0591866376180101, 0.027596223674655, 0.135076252723311]
+    country = ['Nepal', 'United States', 'Australia', 'United Kingdom', 'India', 'South Korea', 'United Arab Emirates', 'Germany', 'New Zealand', 'Norway', 'Qatar', 'Hong Kong', 'Mongolia', 'Japan', 'Singapore', 'Canada', 'Iraq', 'Finland', 'Netherlands', 'Thailand', 'Israel', 'Russia', 'Myanmar', 'Brazil', 'France', 'Switzerland', 'Nigeria', 'Spain', 'Ireland', 'Portugal', 'Colombia', 'Pakistan', 'Oman', 'Czech Republic']
+    country_lat_audio = [28.1083929, 39.7837304, -24.7761086, 54.7023545, 22.3511148, 36.638392, 24.0002488, 51.0834196, -41.5000831, 60.5000209, 25.3336984, 22.2793278, 46.8250388, 36.5748441, 1.357107, 61.0666922, 33.0955793, 63.2467777, 52.2288689, 14.8971921, 31.5313113, 64.6863136, 17.1750495, -10.3333333, 46.603354, 46.7985624, 9.6000359, 39.3260685, 52.865196, 40.0332629, 4.099917, 30.3308401, 21.0000287, 49.8167003]
+    country_lon_audio = [84.0917139, -100.445882, 134.755, -3.2765753, 78.6677428, 127.6961188, 53.9994829, 10.4234469, 172.8344077, 9.0999715, 51.2295295, 114.1628131, 103.8499736, 139.2394179, 103.8194992, -107.991707, 44.1749775, 25.9209164, 5.3214503, 100.83273, 34.8667654, 97.7453061, 95.9999652, -53.2, 1.8883335, 8.2319736, 7.9999721, -4.8379791, -7.9794599, -7.8896263, -72.9088133, 71.247499, 57.0036901, 15.4749544]
+    percent_country = [55.00000000000001, 11.0, 8.0, 5.0, 4.0, 4.0, 3.0, 2.0, 2.0, 1.0, 0.844346549192364, 0.624082232011747, 0.550660792951541, 0.440528634361233, 0.367107195301027, 0.293685756240822, 0.22026431718061598, 0.22026431718061598, 0.11013215859030799, 0.11013215859030799, 0.0734214390602055, 0.0734214390602055, 0.0367107195301027, 0.0367107195301027, 0.0367107195301027, 0.0367107195301027, 0.0367107195301027, 0.0367107195301027, 0.0367107195301027, 0.0367107195301027, 0.0367107195301027, 0.0367107195301027, 0.0367107195301027, 0.0367107195301027]
+    option = "Finance Factory"
+
 def read_audio_datas(optionssss):
     global plays_date,plays_time,apps,percent_apps,country,country_lat_audio,country_lon_audio,percent_country,option
     plays_date,plays_time,apps,percent_apps,country,country_lat_audio,country_lon_audio,percent_country = read_audio_files(optionssss)

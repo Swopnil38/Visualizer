@@ -306,6 +306,47 @@ def read_fb_insta(name):
     except Exception as e:
         print(e)
     
+ 
+def fb_insta_reach(name):
+    data = pd.ExcelFile('data/{}.xlsx'.format(name))
+    like_follow = pd.read_excel(data,'Reach')
+
+    like_follow['year'] = pd.DatetimeIndex(like_follow['Date']).year
+    like_follow['month'] = pd.DatetimeIndex(like_follow['Date']).month
+    like_follow['date'] = pd.to_datetime(like_follow['Date'])
+    
+    year_month_fb_insta = []
+    like_fb = []
+    follower_insta = []
+
+        
+    years = [2019,2020,2021,2022]
+    months = [1,2,3,4,5,6,7,8,9,10,11,12]
+    for i in years:
+        current_year = []
+        current_year.append(i)
+        year_df = like_follow[like_follow['year'].isin(current_year)]
+
+
+        
+        for j in months:
+            monthss = str(i)+'/'+str(j)
+            viewed = 0
+            avg_durationed = 0
+            month = []
+            month.append(j)
+            month_df = year_df[year_df['month'].isin(month)]
+            
+            for k in month_df['Instagram reach']:
+                viewed = viewed + k
+            month_days = 0
+            for l in month_df['Facebook Page reach']:
+                avg_durationed = avg_durationed + l
+
+            like_fb.append(viewed)
+            follower_insta.append(avg_durationed)
+            year_month_fb_insta.append(monthss)
+    return year_month_fb_insta,follower_insta,like_fb
     
 def tiktok_data(name):
     geolocator = Nominatim(user_agent='your unique UA')
