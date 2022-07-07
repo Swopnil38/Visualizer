@@ -404,35 +404,14 @@ def tiktok_data(name):
     year_month_tiktok = []
     follower_tiktok = []
     
-    tiktok_follower['year'] = pd.DatetimeIndex(tiktok_follower['Date']).year
-    tiktok_follower['month'] = pd.DatetimeIndex(tiktok_follower['Date']).month
-    tiktok_follower['date'] = pd.to_datetime(tiktok_follower['Date'])
+  
 
         
-    years = [2022]
-    months = [1,2,3,4,5,6,7,8,9,10,11,12]
-    for i in years:
-        current_year = []
-        current_year.append(i)
-        year_df = tiktok_follower[tiktok_follower['year'].isin(current_year)]
-
-
-        
-        for j in months:
-            monthss = str(i)+'/'+str(j)
-            viewed = 0
-            avg_durationed = 0
-            month = []
-            month.append(j)
-            month_df = year_df[year_df['month'].isin(month)]
+    for i in tiktok_follower['Date']:
+        year_month_tiktok.append(i)
+    for i in tiktok_follower['Followers']:
+        follower_tiktok.append(i)
             
-
-            for l in month_df['Followers']:
-                avg_durationed = avg_durationed + l
-
-
-            follower_tiktok.append(avg_durationed)
-            year_month_tiktok.append(monthss)
             
     return tik_age,tik_age_label,tik_geo_label,tik_geo_value,follower_tiktok,year_month_tiktok,country_lat_fb,country_lon_fb
  

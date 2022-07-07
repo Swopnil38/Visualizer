@@ -56,7 +56,7 @@ if submitted or st.session_state.submit_state:
                                 option3 = st.multiselect('Which Data You want to view?',['Age/Gender','Country Follower/viewer','Views/Follower/Plays','Apps'],key = counter)
                                 counter = counter + 1
                                 break
-                        elif k in special_for and len(option2 == 1):
+                        elif k in special_for and len(option2) == 1:
                             with col5:
                                 option3 = st.multiselect('Which Data You want to view?',['Country Follower/viewer','Views/Follower/Plays','Apps'],key = counter)
                                 counter = counter + 1
