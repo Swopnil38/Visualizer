@@ -305,6 +305,8 @@ def tiktok_age():
             st.write("Error while retreving Age Data of Tiktok")
 def tiktok_country():
     try:
+        st.markdown("<h1 style='text-align: center;'>Country Wise Viewer Graph of Tiktok</h1><br><br>", unsafe_allow_html=True)   
+    
         col,col2 = st.columns([3,2])
         with col:
             df = pd.DataFrame(list(zip(tik_geo_label,tik_geo_value,country_lat_fb,country_lon_fb)),columns = ['name','view','lat','lng'])
@@ -346,14 +348,15 @@ def tiktok_country():
         st.write("Error While Retreving Country Data of Tiktok")
 def tiktok_follower():
     try:
+        st.markdown("<h1 style='text-align: center;'>Follower Graph of Tiktok</h1><br><br>", unsafe_allow_html=True)   
+    
         print(follower_tiktok)
         print(year_month_tiktok)
         follower_data = pd.DataFrame(follower_tiktok,index=year_month_tiktok)
-        print("Here")
+
         if follower_tiktok == []:
             st.title("No Data Found")
         else:
-            print("New")
             st.area_chart(follower_data)
     except:
         st.write("Error while Retreving Data of Follower from Tiktok")
@@ -406,6 +409,8 @@ def audio_apps():
 
 def country_audio():
     try:
+        st.markdown("<h1 style='text-align: center;'>Country Wise Viewer Graph of Audio Sites</h1><br><br>", unsafe_allow_html=True)   
+    
         col,col2 = st.columns([3,2])
         with col:
             df = pd.DataFrame(list(zip(country,percent_country,country_lat_audio,country_lon_audio)),columns = ['name','view','lat','lng'])
@@ -440,7 +445,7 @@ def country_audio():
             
             st.pydeck_chart(r)
         with col2:
-            df = pd.DataFrame(list(zip(country,country_viewer_per)),columns = ['Country Name','Country Viewer Percentage'])
+            df = pd.DataFrame(list(zip(country,percent_country)),columns = ['Country Name','Country Viewer Percentage'])
             df.sort_values(by='Country Viewer Percentage')
             st.dataframe(df)
     except:
