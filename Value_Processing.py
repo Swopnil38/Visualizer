@@ -94,6 +94,7 @@ def read_yt_csv(name):
         
     view['year'] = pd.DatetimeIndex(view['date']).year
     view['month'] = pd.DatetimeIndex(view['date']).month
+    
     view['date'] = pd.to_datetime(view['date'])
     
     year_month = []
@@ -143,25 +144,21 @@ def read_yt_csv(name):
 def read_yt_csv_dately(name,yr,mo):
     data = pd.ExcelFile('data/{}.xlsx'.format(name))
     view = pd.read_excel(data,'view')
-    view['year'] = pd.DatetimeIndex(view['date']).year
+    view['year'] = pd.DatetimeIndex(view['date']).day
     view['month'] = pd.DatetimeIndex(view['date']).month
-    view['date'] = pd.to_datetime(view['date'])
-    view['day'] = view['date'].dt.date
+    view['dates'] = pd.to_datetime(view['date'])
+    yr = pd.to_datetime(yr)
+    mo = pd.to_datetime(mo)
+    print(view['date'])
+    print(yr)
+    mask = (view['dates'] > yr) & (view['dates'] <= mo)
+    view = view.loc[mask]
 
-    current_year = []
-    current_year.append(yr)
-    current_month = []
-    current_month.append(mo)
-
-    year_df = view[view['year'].isin(current_year)]
-
-    month_df = year_df[year_df['month'].isin(current_month)]
-    
     views = []
-    for i in month_df['views']:
+    for i in view['views']:
         views.append(i)
     date = []
-    for j in month_df['date']:
+    for j in view['date']:
         date.append(j)
     print(views)
     print(date)

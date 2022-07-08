@@ -110,8 +110,11 @@ def YT_overall_view():
 
 def YT_particular_view(year_select,month_select):
 
-    data,labels = read_yt_csv_dately(option,int(year_select),int(month_select))
+    data,labels = read_yt_csv_dately(option,year_select,month_select)
+    print(data)
+
     month_data = pd.DataFrame(data,index=labels)
+    print(month_data)
     if data == []:
         st.write("No Data Found of Selected Date")
     else:
