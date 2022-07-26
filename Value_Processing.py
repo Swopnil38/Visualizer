@@ -8,30 +8,6 @@ from geopy.exc import GeocoderTimedOut
 
 def read_yt_csv(name):
     
-    list_alpha_2 = [i.alpha_2 for i in list(pycountry.countries)]
-    list_alpha_3 = [i.alpha_3 for i in list(pycountry.countries)]    
-
-    def country_flag(df):
-        if (len(df)==2 and df in list_alpha_2):
-            return pycountry.countries.get(alpha_2=df).name
-        elif (len(df)==3 and df in list_alpha_3):
-            return pycountry.countries.get(alpha_3=df).name
-        else:
-            return 'Invalid Code'
-        
-    geolocator = Nominatim(user_agent='your unique UA')
-    def geolocate(country):
-        try:
-            # Geolocate the center of the country
-            loc = geolocator.geocode(country)
-            # And return latitude and longitude
-            return [loc.latitude, loc.longitude]
-        except GeocoderTimedOut:
-            # Return missing value
-            return geolocate(country)
-        except:
-            return 0,0
-    
     data = pd.ExcelFile('data/{}.xlsx'.format(name))
     GenderAge = pd.read_excel(data,'GenderWiseAge')
     Geography = pd.read_excel(data,'Geography')
@@ -67,20 +43,16 @@ def read_yt_csv(name):
     country_name = []
     country_viewer_per = []
     for i in Geography['Country']:
-        country_ = country_flag(i)
-        country_name.append(country_)
+        country_name.append(i)
     Geography['Country_Name'] = country_name
     
     country_lat = []
     country_lon = []
     
     
-    for i in Geography['Country']:
-        countrys_lat,countrys_long = geolocate(i)
-        country_lat.append(countrys_lat)
-        country_lon.append(countrys_long)
-    Geography['Latitude'] = country_lat
-    Geography['Longitude'] = country_lon
+    for i,j in zip(Geography['Latitude'],Geography['Longitude']) :
+        country_lat.append(i)
+        country_lon.append(j)
         
     print(Geography)
     
@@ -168,19 +140,6 @@ def read_yt_csv_dately(name,yr,mo):
 def read_fb_insta(name):
 
     try:   
-        print("6")
-        geolocator = Nominatim(user_agent='your unique UA')
-        def geolocate(country):
-            try:
-                # Geolocate the center of the country
-                loc = geolocator.geocode(country)
-                # And return latitude and longitude
-                return [loc.latitude, loc.longitude]
-            except GeocoderTimedOut:
-                # Return missing value
-                return geolocate(country)
-            except:
-                return 0,0
         data = pd.ExcelFile('data/{}.xlsx'.format(name))
         insta_age = pd.read_excel(data,'InstagramAge')
         fb_age = pd.read_excel(data,'FacebookAge')
@@ -225,10 +184,11 @@ def read_fb_insta(name):
         country_lon = []
 
         for i in insta_Geography['Country']:
-            countrys_lat,countrys_long = geolocate(i)
-            country_lat.append(countrys_lat)
-            country_lon.append(countrys_long)
+            
             country_name_fb_insta.append(i)
+        for i,j in zip(insta_Geography['Latitude'],insta_Geography['Longitude']):
+            country_lat.append(i)
+            country_lon.append(j)
         insta_Geography['Latitude'] = country_lat
         insta_Geography['Longitude'] = country_lon
             
@@ -346,18 +306,7 @@ def fb_insta_reach(name):
     return year_month_fb_insta,follower_insta,like_fb
     
 def tiktok_data(name):
-    geolocator = Nominatim(user_agent='your unique UA')
-    def geolocate(country):
-        try:
-            # Geolocate the center of the country
-            loc = geolocator.geocode(country)
-            # And return latitude and longitude
-            return [loc.latitude, loc.longitude]
-        except GeocoderTimedOut:
-            # Return missing value
-            return geolocate(country)
-        except:
-            return 0,0
+
     
     data = pd.ExcelFile('data/{}.xlsx'.format(name))
     tiktok_age = pd.read_excel(data,'Tiktok_Age')
@@ -380,10 +329,11 @@ def tiktok_data(name):
     country_lon_fb = []
 
     for i in tiktok_Geography['Country']:
-        countrys_lat,countrys_long = geolocate(i)
-        country_lat_fb.append(countrys_lat)
-        country_lon_fb.append(countrys_long)
         tik_geo_label.append(i)
+
+    for i,j in zip(tiktok_Geography['Latitude'],tiktok_Geography['Longitude']):
+        country_lat_fb.append(i)
+        country_lon_fb.append(j)
     tiktok_Geography['Latitude'] = country_lat_fb
     tiktok_Geography['Longitude'] = country_lon_fb
         
@@ -413,19 +363,7 @@ def tiktok_data(name):
     return tik_age,tik_age_label,tik_geo_label,tik_geo_value,follower_tiktok,year_month_tiktok,country_lat_fb,country_lon_fb
  
 def read_audio_files(name):
-    
-    geolocator = Nominatim(user_agent='your unique UA')
-    def geolocate(country):
-        try:
-            # Geolocate the center of the country
-            loc = geolocator.geocode(country)
-            # And return latitude and longitude
-            return [loc.latitude, loc.longitude]
-        except GeocoderTimedOut:
-            # Return missing value
-            return geolocate(country)
-        except:
-            return 0,0
+
     
     data = pd.ExcelFile('data/{}.xlsx'.format(name))
     audio_plays = pd.read_excel(data,'Audio')
@@ -455,12 +393,11 @@ def read_audio_files(name):
     country_lon_audio = []
 
     for i in audio_geo['Geo']:
-        countrys_lat,countrys_long = geolocate(i)
-        country_lat_audio.append(countrys_lat)
-        country_lon_audio.append(countrys_long)
+       
         country.append(i)
-    audio_geo['Latitude'] = country_lat_audio
-    audio_geo['Longitude'] = country_lon_audio
+    for i,j in zip(audio_geo['Latitude'],audio_geo['Longitude']):
+        country_lat_audio.append(i)
+        country_lon_audio.append(j)
         
     return plays_date,plays_time,apps,percent_apps,country,country_lat_audio,country_lon_audio,percent_country
     
